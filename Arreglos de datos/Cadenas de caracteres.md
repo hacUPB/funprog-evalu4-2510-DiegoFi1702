@@ -79,7 +79,25 @@ sgets (cadena, sizeof(cadena), stdin); función segura.
 ```
 4. ¿Qué hace exactamente la función strcspn() y por qué es útil usarla junto con fgets()?
 
-La función Strcspn() se encarga de 
+La función Strcspn() se encarga de decirnos cuantos caracteres hay hasta que llegue a coincidir con uno que nosotros le damos a la función.
+``` 
+Ejemplo: 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, char const *argv[])
+{
+    
+    char frase[12] = "ceeeeeeeo";
+    int contador = strcspn(frase, "o");
+
+    printf("Cantidad de o = %d\n", contador);
+    return 0;
+}
+ Al ejecutar, nos dice que la cantidad de caracteres antes de la o es de 8, que si contamos, es correcto.
+ ```
+ Lo bueno de combiar esto con "fgets" es que de esa forma podemos obtener la cantidad de caracteres antes de cierto símbolo, etc. en una frase que hayamos creado nosotros mismos.
 
 5. (No resolver por ahora.)
 
