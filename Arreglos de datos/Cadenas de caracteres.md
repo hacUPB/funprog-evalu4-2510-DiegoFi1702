@@ -59,3 +59,29 @@ int main(void)
 
 
 }
+``` 
+### Preguntas de control
+1. ¿Por que sizeof("Hola) devuelve 5 pero strlen("hola") devuelve 4
+
+Es debido a que sizeof cuenta bytes, y por tanto el carácter nulo, mientras que strlen, solo cuenta los carácteres de la cuerda (string)
+
+2. ¿Cuál es la diferencia práctica entre declarar una cadena como arreglo (char saludo[]) y como puntero (char *saludo)? 
+
+La diferencia es que al declararlo con el asterisco, se declara como puntero y por tanto el preprocesador entiende que es algo que no se va a cambiar, mientras que al usarlo como arreglo es algo que podemos cambiar continuamente.
+
+3. ¿Cómo evitas un "buffer overflow" al copiar o concatenar cadenas?
+
+La mejor forma de evitarlo es usando un comando seguro, como seria el caso de fgets.
+```
+char cadena [5]
+scanf ("%s", cadena);  función insegura.
+sgets (cadena, sizeof(cadena), stdin); función segura.
+```
+4. ¿Qué hace exactamente la función strcspn() y por qué es útil usarla junto con fgets()?
+
+La función Strcspn() se encarga de 
+
+5. (No resolver por ahora.)
+
+## Dibujo de memoria
+![dibujo](/Images/Dibujomemoria.png)
