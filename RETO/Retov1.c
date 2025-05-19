@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]){
     FILE *punt_archivo;
     char nom_archivo[100], minusculas;
     char Palabra[20], Tex_str[caracteres];
-    
+    char string_text[caracteres];
     
     
     
@@ -23,92 +23,93 @@ int main(int argc, char const *argv[]){
         printf("No se pudo abrir el archivo\n");
         return 1;
     }
-        
-        switch(menu()){
-            case 1: switch(submen_1()){
-                
-                case 1: //cant caracteres
-                caracteres = strlen(punt_archivo);
-                printf("El texto contiene %d caracteres.\n", caracteres);
-                break;
-                
-                case 2:
-                while(punt_archivo != EOF){
-                    texto = fgetc(punt_archivo);
-                if (isspace(texto))
-                palabras++;
-            }
-                printf("Hay %d palabras en el texto.\n", palabras); 
-                break;
-                
-                case 3:
-                while(punt_archivo != EOF){
-                    texto = fgetc(punt_archivo);
-                    if (isspace(texto))
-                    espacios++;
-                }
-                printf("Hay %d espacios en blanco.\n", espacios); 
-                break;
+    
+    caracteres = strlen(punt_archivo);
+    while(punt_archivo != EOF){
+        texto = fgetc(punt_archivo);
+        if (isspace(texto))
+        palabras++;
+    }
+    
+    while(punt_archivo != EOF){
+        texto = fgetc(punt_archivo);
+        if (isspace(texto))
+        espacios++;
+    }
+    
+    while(punt_archivo != EOF){
+        texto = fgetc(punt_archivo);
+        if(iscntrl(texto))
+        lineas++;
+    }
+    
+    while(punt_archivo != EOF){
+        texto = fgetc(punt_archivo);
+        minusculas = tolower((char)texto);
+        if(minusculas == 'a'){
+            vocal_a++;
+        }
+        if(minusculas == 'e'){
+            vocal_e++;
+        }
+        if(minusculas == 'i'){
+            vocal_i++;
+        }
+        if(minusculas == 'o'){
+            vocal_o++;
+        }
+        if(minusculas == 'u'){
+            vocal_u++;
+        }
+    }
 
-                case 4:
-                while(punt_archivo != EOF){
-                    texto = fgetc(punt_archivo);
-                    if(iscntrl(texto))
-                    lineas++;
-                }
-                printf("Hay %d lineas en el texto.\n", lineas);
-                break;
-
-                default:
-                printf("Opcion no valida.\n");
-                break;
-            }
+    fgets()
+    
+    switch(menu()){
+        case 1: switch(submen_1()){
+            case 1:
+            printf("El texto contiene %d caracteres.\n", caracteres);
             break;
             
-            case 2: //acá colocar el cálculo de la cantidad de vocales.
-            while(punt_archivo != EOF){
-                texto = fgetc(punt_archivo);
-                minusculas = tolower((char)texto);
-                if(minusculas == 'a'){
-                    vocal_a++;
-                }
-                if(minusculas == 'e'){
-                    vocal_e++;
-                }
-                if(minusculas == 'i'){
-                    vocal_i++;
-                }
-                if(minusculas == 'o'){
-                    vocal_o++;
-                }
-                if(minusculas == 'u'){
-                    vocal_u++;
-                }
-            }
-            printf("La cantidad de vocales es: A:%d, E:%d, I:%d, O:%d, U:%d \n", vocal_a, vocal_e, vocal_i, vocal_o, vocal_u);
-            break; 
-            
-            case 3: //buscar y reemplazar.
-            printf("Por favor escriba la palabra que desea buscar.\n");
-            fgets(Palabra, 20, stdin);
-            fgets(Tex_str, caracteres, punt_archivo);
-            
-
-
+            case 2:
+            printf("Hay %d palabras en el texto.\n", palabras); 
             break;
             
-            case 4: //Crear archivo nuevo con los datos.
+            case 3:
+            printf("Hay %d espacios en blanco.\n", espacios); 
             break;
             
-            default: printf("Opcion no valida\n");
+            case 4:
+            printf("Hay %d lineas en el texto.\n", lineas);
+            break;
+
+            default:
+            printf("Opcion no valida.\n");
             break;
         }
+        break;
+            
+        case 2: //acá colocar el cálculo de la cantidad de vocales.
+        printf("La cantidad de vocales es: A:%d, E:%d, I:%d, O:%d, U:%d \n", vocal_a, vocal_e, vocal_i, vocal_o, vocal_u);
+        break; 
         
+        case 3: //buscar y reemplazar.
+        printf("Por favor escriba la palabra que desea buscar.\n");
+        fgets(Palabra, 20, stdin);
         
+        break;
         
-        fclose(punt_archivo);     
-        return 0;
+        case 4: //Crear archivo nuevo con los datos.
+        break;
+        
+        default: printf("Opcion no valida\n");
+        break;
     }
+    
+    
+    fclose(punt_archivo);
+    return 0;
+}
 
 
 
