@@ -10,12 +10,13 @@ int main(int argc, char const *argv[]){
     int vocal_a, vocal_e, vocal_i, vocal_o, vocal_u, espacios, lineas, caracteres, palabras, texto;
     FILE *punt_archivo;
     char nom_archivo[100], minusculas;
-    char Palabra[20], Tex_str[caracteres];
-    char string_text[caracteres];
+    char Palabra[20], Tex_str[1000];
+    char string_text[1000];
     int remp;
     
     printf("Por favor ingrese el nombre del archivo con la extension txt.\n");
     fgets(nom_archivo, 100, stdin);
+    nom_archivo[strlen(nom_archivo)-1] = '\0';
     punt_archivo = fopen(nom_archivo, "r");
     if (punt_archivo == NULL){
         printf("No se pudo abrir el archivo\n");
