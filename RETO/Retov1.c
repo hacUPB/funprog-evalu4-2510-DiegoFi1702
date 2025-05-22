@@ -12,9 +12,7 @@ int main(int argc, char const *argv[]){
     char nom_archivo[100], minusculas;
     char Palabra[20], Tex_str[caracteres];
     char string_text[caracteres];
-    
-    
-    
+    int remp;
     
     printf("Por favor ingrese el nombre del archivo con la extension txt.\n");
     fgets(nom_archivo, 100, stdin);
@@ -23,27 +21,21 @@ int main(int argc, char const *argv[]){
         printf("No se pudo abrir el archivo\n");
         return 1;
     }
-    
-    caracteres = strlen(punt_archivo);
-    while(punt_archivo != EOF){
+    caracteres = 0; 
+    while(!feof(punt_archivo)){
         texto = fgetc(punt_archivo);
         if (isspace(texto))
         palabras++;
-    }
-    
-    while(punt_archivo != EOF){
+        caracteres++;
         texto = fgetc(punt_archivo);
         if (isspace(texto))
         espacios++;
-    }
-    
-    while(punt_archivo != EOF){
-        texto = fgetc(punt_archivo);
+         texto = fgetc(punt_archivo);
         if(iscntrl(texto))
-        lineas++;
+        lineas++;    
     }
-    
-    while(punt_archivo != EOF){
+
+    while(!feof(punt_archivo)){
         texto = fgetc(punt_archivo);
         minusculas = tolower((char)texto);
         if(minusculas == 'a'){
@@ -63,7 +55,7 @@ int main(int argc, char const *argv[]){
         }
     }
 
-    fgets()
+    fgets(string_text, caracteres, punt_archivo);
     
     switch(menu()){
         case 1: switch(submen_1()){
@@ -96,7 +88,9 @@ int main(int argc, char const *argv[]){
         case 3: //buscar y reemplazar.
         printf("Por favor escriba la palabra que desea buscar.\n");
         fgets(Palabra, 20, stdin);
-        
+        remp = strlen(Palabra) - 1;
+        //Profe es la 1:17am, me rindo con esto, no sé como hacerlo TT.
+        //Le pedí ayuda a la Ia pero me da unas funciones muy complejas, y no entiendo como usa strstr, tengo una idea, pero hasta acá es hasta donde desarrollé yo solo TT.
         break;
         
         case 4: //Crear archivo nuevo con los datos.
