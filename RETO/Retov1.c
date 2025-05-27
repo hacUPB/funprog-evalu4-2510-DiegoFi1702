@@ -7,7 +7,7 @@ int menu(void);
 int submen_1(void);
 
 int main(int argc, char const *argv[]){
-    int vocal_a, vocal_e, vocal_i, vocal_o, vocal_u, espacios, lineas, caracteres, palabras, texto;
+    int vocal_a, vocal_e, vocal_i, vocal_o, vocal_u, espacios, lineas, caracteres = 0, palabras, texto;
     FILE *punt_archivo;
     char nom_archivo[100], minusculas;
     char Palabra[20], Tex_str[1000];
@@ -25,9 +25,9 @@ int main(int argc, char const *argv[]){
     caracteres = 0; 
     while(!feof(punt_archivo)){
         texto = fgetc(punt_archivo);
-        if (isspace(texto))
-        palabras++;
         caracteres++;
+        if(isspace(texto))
+        palabras++;
         texto = fgetc(punt_archivo);
         if (isspace(texto))
         espacios++;
